@@ -1,30 +1,42 @@
-import React from "react";
+import React, { Profiler } from "react";
+import { Link } from "react-router-dom";
 
-function UserInfos() {
+function UserInfos(props) {
   return (
     <div className="d-flex justify-content-center mt-5">
-      <div class="card" style={{width: "18rem"}}>
-        <img src="..." class="card-img-top" alt="..." />
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
+      <div className="card" style={{ width: "24rem" }}>
+        <img src={props.photo} className="card-img-top" alt="..." />
+        <div className="card-body">
+          <h5 className="card-title">
+            {props.name === null ? props.login : props.name}
+          </h5>
         </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">An item</li>
-          <li class="list-group-item">A second item</li>
-          <li class="list-group-item">A third item</li>
+        <ul className="list-group list-group-flush">
+          <Link to={`/followers/${props.login}`}>
+            <li className="list-group-item">
+              <button type="button" class="btn btn-primary">
+                Followers{" "}
+                <span class="badge bg-secondary">{props.followers}</span>
+                <span class="visually-hidden">unread messages</span>
+              </button>
+            </li>
+          </Link>
+          <li className="list-group-item">
+            <Link to={`/following/${props.login}`}>
+              <button type="button" class="btn btn-primary">
+                Following{" "}
+                <span class="badge bg-secondary">{props.following}</span>
+                <span class="visually-hidden">unread messages</span>
+              </button>
+            </Link>
+          </li>
+          <li className="list-group-item">
+            <button type="button" class="btn btn-primary">
+              Repositories <span class="badge bg-secondary">{props.repos}</span>
+              <span class="visually-hidden">unread messages</span>
+            </button>
+          </li>
         </ul>
-        <div class="card-body">
-          <a href="#" class="card-link">
-            Card link
-          </a>
-          <a href="#" class="card-link">
-            Another link
-          </a>
-        </div>
       </div>
     </div>
   );
