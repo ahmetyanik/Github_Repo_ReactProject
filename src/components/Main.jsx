@@ -1,22 +1,25 @@
-import React, { Profiler, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import UserInfos from "./UserInfos";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
-import Followers from "./Followers";
 
 function Main() {
-  const [profil, setProfil] = useState([]);
+  const [profil, setProfil] = useState("");
 
   const query = new URLSearchParams(useLocation().search);
   const searchingWord = query.get("userName");
 
-  console.log(searchingWord);
+  console.log("pp", profil.name);
 
   function getGithubDatas() {
     axios
       .get("https://api.github.com/users/" + searchingWord)
       .then(function (user) {
-        setProfil(user.data);
+        if (user.data.login === "null") {
+          setProfil(profil);
+        } else {
+          setProfil(user.data);
+        }
       });
   }
 
@@ -26,9 +29,7 @@ function Main() {
 
   return (
     <div className="container mt-5">
-
-    <h3>Github Api Repo</h3>
-
+      <h3>Github Api User Finder</h3>
 
       <form>
         <div className="d-flex justify-content-center">
@@ -44,17 +45,22 @@ function Main() {
           </div>
         </div>
       </form>
-      <UserInfos 
+
+      {profil.name === undefined ? (
+        <img className="mt-5" src="https://th.bing.com/th/id/Rcd9ffe7f99f8e6f9e3ad0b761b7148ca?rik=vpjKXhGPq%2fgbkQ&pid=ImgRaw" style={{width:"50%",alignItems:"center"}}/>
+      ) : (
+        <UserInfos
+          key={profil.id}
           name={profil.name}
           login={profil.login}
           photo={profil.avatar_url}
           followers={profil.followers}
           following={profil.following}
           repos={profil.public_repos}
-      />
+        />
+      )}
 
-
-      
+      <div></div>
     </div>
   );
 }
