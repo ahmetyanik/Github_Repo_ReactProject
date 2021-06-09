@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import UserInfos from "./UserInfos";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
+import Title from "./Title";
 
 function Main() {
   const [profil, setProfil] = useState("");
@@ -29,7 +30,7 @@ function Main() {
 
   return (
     <div className="container mt-5">
-      <h3>Github Api User Finder</h3>
+      <h3 className="text-center mt-5">Github Api User Finder</h3>
 
       <form>
         <div className="d-flex justify-content-center">
@@ -47,7 +48,11 @@ function Main() {
       </form>
 
       {profil.name === undefined ? (
-        <img className="mt-5" src="https://th.bing.com/th/id/Rcd9ffe7f99f8e6f9e3ad0b761b7148ca?rik=vpjKXhGPq%2fgbkQ&pid=ImgRaw" style={{width:"50%",alignItems:"center"}}/>
+        <img
+          className="mt-5"
+          src="https://th.bing.com/th/id/Rcd9ffe7f99f8e6f9e3ad0b761b7148ca?rik=vpjKXhGPq%2fgbkQ&pid=ImgRaw"
+          style={{ width: "50%", alignItems: "center" }}
+        />
       ) : (
         <UserInfos
           key={profil.id}

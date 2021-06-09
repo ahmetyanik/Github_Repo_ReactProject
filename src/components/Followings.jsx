@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
+import Title from "./Title";
 
 function Followings() {
   const parametre = useParams();
@@ -19,7 +20,8 @@ function Followings() {
   useEffect(getFollowing, []);
 
   return (
-    <div>
+    <div className="container">
+    <Title/>
       <Link to="/">
         <button className="btn btn-primary mt-5">Home Page</button>
       </Link>

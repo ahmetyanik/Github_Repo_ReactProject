@@ -1,14 +1,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Title from "./Title";
 
 function UserInfos(props) {
   return (
     <div className="d-flex justify-content-center mt-5">
       <div className="card" style={{ width: "24rem" }}>
-        <img src={props.photo===undefined?"https://i2.cnnturk.com/i/cnnturk/75/400x0/54a12ba2f493b82814b9f5f1.jpg":props.photo} className="card-img-top" alt="..." />
+        <img
+          src={
+            props.photo === undefined
+              ? "https://i2.cnnturk.com/i/cnnturk/75/400x0/54a12ba2f493b82814b9f5f1.jpg"
+              : props.photo
+          }
+          className="card-img-top"
+          alt="..."
+        />
         <div className="card-body">
           <h5 className="card-title">
-            {props.name ===null ? props.login : props.name}
+            {props.name === null ? props.login : props.name}
           </h5>
         </div>
         <ul className="list-group list-group-flush">
