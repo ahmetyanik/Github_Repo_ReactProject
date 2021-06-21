@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import UserInfos from "./UserInfos";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
-import Title from "./Title";
 
 function Main() {
   const [profil, setProfil] = useState("");
